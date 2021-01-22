@@ -141,6 +141,29 @@ for(step in 4:l){
     }
   }
 }
+# ##########(3_1)
+# cl=ceiling(l/2)
+# theta_21<-array(rep(0,kk*l*cl),dim=c(l,kk,cl))
+# theta_21[,,1]<-theta
+# diff[2,5]=metrics(theta_21[2,,1],theta_21[1,,1])
+# limit[2,5]=metrics(theta_21[2,,1],truepara)
+# diff[3,5]=metrics(theta_21[2,,1],theta_21[3,,1])
+# limit[3,5]=metrics(theta_21[3,,1],truepara)
+# theta_21[1,,2]=eps_0(theta_21[1,,1],theta_21[2,,1],theta_21[3,,1])
+# for(step in 4:l){
+#   diff[step,5]=metrics(theta_21[step,,1],theta_21[step-1,,1])
+#   limit[step,5]=metrics(theta_21[step,,1],truepara)
+#   for(k in 2:ceiling(step/2)){
+#     L=step-2*(k-1)
+#     theta_21[L,,k]=eps_0(theta_21[L,,k-1],theta_21[L+1,,k-1],theta_21[L+2,,k-1])
+#     if(L>1){
+#       diff_1=metrics(theta_21[L,,k],theta_21[L-1,,k])
+#       limit_1=metrics(theta_21[L,,k],truepara)
+#       if(is.finite(diff_1)&&diff_1<diff[step,5]){diff[step,5]=diff_1}
+#       if(is.finite(limit_1)&&limit_1<limit[step,5]){limit[step,5]=limit_1}
+#     }
+#   }
+# }
 
 ###########(4)
 theta_3<-array(rep(0,kk*l*(l+1)),dim=c(l,kk,l+1))
@@ -179,18 +202,24 @@ for(step in 5:l){
 }
 
 
-View(diff[1:(l-4),])
-View(limit[1:(l-4),])
+#View(diff[1:(l-4),])
+#View(limit[1:(l-4),])
 plot(diff[2:(l-4),4],type="n",ylab="distance",xlab="k",
      ylim=c(-30,4))
 lines(diff[2:(l-4),1],col="red",lty=1,pch=15,lwd=1)
 lines(diff[2:(l-4),2],col="green",lty=2,pch=16,lwd=2)
 lines(diff[2:(l-4),3],col="blue",lty=3,pch=17,lwd=3)
 lines(diff[2:(l-4),4],col="black",lty=4,pch=18,lwd=4)
+# lines(diff[2:(l-4),5],col="yellow",lty=5,pch=19,lwd=5)
+# legend("bottomleft",c("(1)","(2)","(3)","(4)","(5)"),
+#        col=c("red","green","blue","black","yellow"),
+#        text.col=c("red","green","blue","black","yellow"),
+#        pch=c(15,16,17,18,19),lty=c(1,2,3,4,5),bty="n",cex=0.6)
 legend("bottomleft",c("(1)","(2)","(3)","(4)"),
        col=c("red","green","blue","black"),
        text.col=c("red","green","blue","black"),
        pch=c(15,16,17,18),lty=c(1,2,3,4),bty="n",cex=0.6)
+
 
 
 
@@ -199,6 +228,11 @@ lines(limit[2:(l-4),1],col="red",lty=1,pch=15,lwd=1)
 lines(limit[2:(l-4),2],col="green",lty=2,pch=16,lwd=2)
 lines(limit[2:(l-4),3],col="blue",lty=3,pch=17,lwd=3)
 lines(limit[2:(l-4),4],col="black",lty=4,pch=18,lwd=4)
+# lines(limit[2:(l-4),5],col="yellow",lty=5,pch=19,lwd=5)
+# legend("bottomleft",c("(1)","(2)","(3)","(4)","(5)"),
+#        col=c("red","green","blue","black","yellow"),
+#        text.col=c("red","green","blue","black","yellow"),
+#        pch=c(15,16,17,18,19),lty=c(1,2,3,4,5),bty="n",cex=0.6)
 legend("bottomleft",c("(1)","(2)","(3)","(4)"),
        col=c("red","green","blue","black"),
        text.col=c("red","green","blue","black"),
